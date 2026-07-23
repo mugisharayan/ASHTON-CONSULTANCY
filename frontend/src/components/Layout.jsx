@@ -15,10 +15,11 @@
  */
 
 import { Outlet } from 'react-router-dom';
-import TopBar    from './TopBar';
-import Navbar    from './Navbar';
-import Footer    from './Footer';
-import BackToTop from './BackToTop';
+import TopBar         from './TopBar';
+import Navbar         from './Navbar';
+import Footer         from './Footer';
+import BackToTop      from './BackToTop';
+import PageTransition from './PageTransition';
 import '../styles/components.css';
 
 export default function Layout() {
@@ -27,7 +28,9 @@ export default function Layout() {
       <TopBar />
       <Navbar />
       <main id="main-content">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
       <BackToTop />
