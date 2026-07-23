@@ -8,6 +8,7 @@
  */
 
 import { Link } from 'react-router-dom';
+import { useInView } from '../../hooks/useInView';
 
 const SERVICES = [
   {
@@ -67,29 +68,51 @@ const SERVICES = [
 ];
 
 export default function CoreServices() {
+  const { ref: headingRef, inView: headingIn } = useInView();
+
   return (
     <section className="section section--alt" aria-labelledby="services-heading">
       <div className="container">
 
-        <div className="section-heading">
+        <div
+          ref={headingRef}
+          className={`section-heading animate fade-up ${headingIn ? 'in-view' : ''}`}
+        >
           <h2 id="services-heading">Our Core Services</h2>
           <p>Delivering evidence-based solutions across four key disciplines.</p>
         </div>
 
         <div className="services__grid">
-          {SERVICES.map(({ id, title, description, icon }) => (
-            <article key={id} className="service-card">
-              <div className="service-card__icon">{icon}</div>
-              <h3 className="service-card__title">{title}</h3>
-              <p className="service-card__desc">{description}</p>
-              <Link to="/services" className="service-card__link">
-                Learn More <span aria-hidden="true">→</span>
-              </Link>
-            </article>
+          {SERVICES.map(({ id, title, description, icon }, index) => (
+            <ServiceCard
+              key={id}
+              title={title}
+              description={description}
+              icon={icon}
+              delay={index + 1}
+            />
           ))}
         </div>
 
       </div>
     </section>
+  );
+}
+
+/* Wrapper so each card can call useInView independently */
+function ServiceCard({ title, description, icon, delay }) {
+  const { ref, inView } = useInView();
+  return (
+    <article
+      ref={ref}
+      className={`service-card animate fade-up animate--delay-${delay} ${inView ? 'in-view' : ''}`}
+    >
+      <div className="service-card__icon">{icon}</div>
+      <h3 className="service-card__title">{title}</h3>
+      <p className="service-card__desc">{description}</p>
+      <Link to="/services" className="service-card__link">
+        Learn More <span aria-hidden="true">→</span>
+      </Link>
+    </article>
   );
 }

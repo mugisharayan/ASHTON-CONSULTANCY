@@ -14,6 +14,7 @@
  */
 
 import { Link } from 'react-router-dom';
+import { useInView } from '../../hooks/useInView';
 
 const PROJECTS = [
   {
@@ -43,46 +44,29 @@ const PROJECTS = [
 ];
 
 export default function FeaturedProjects() {
+  const { ref: headingRef, inView: headingIn } = useInView();
+
   return (
     <section className="section" aria-labelledby="projects-heading">
       <div className="container">
 
-        <div className="section-heading">
+        <div
+          ref={headingRef}
+          className={`section-heading animate fade-up ${headingIn ? 'in-view' : ''}`}
+        >
           <h2 id="projects-heading">Featured Projects</h2>
           <p>A selection of our recent work across Uganda.</p>
         </div>
 
         <div className="projects__grid">
-          {PROJECTS.map(({ id, title, region, image }) => (
-            <article key={id} className="project-card">
-
-              {/* Project photo — shows placeholder bg if no image provided */}
-              {image ? (
-                <img
-                  src={image}
-                  alt={title}
-                  className="project-card__image"
-                />
-              ) : (
-                <div className="project-card__image" role="img" aria-label={`Photo for ${title} — placeholder`} />
-              )}
-
-              <div className="project-card__body">
-                <h3 className="project-card__title">{title}</h3>
-                <p className="project-card__region">
-                  {/* Location pin icon */}
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  {region}
-                </p>
-                <Link to="/projects" className="project-card__link">
-                  View Project <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-
-            </article>
+          {PROJECTS.map(({ id, title, region, image }, index) => (
+            <ProjectCard
+              key={id}
+              title={title}
+              region={region}
+              image={image}
+              delay={index + 1}
+            />
           ))}
         </div>
 
@@ -92,5 +76,34 @@ export default function FeaturedProjects() {
 
       </div>
     </section>
+  );
+}
+
+function ProjectCard({ title, region, image, delay }) {
+  const { ref, inView } = useInView();
+  return (
+    <article
+      ref={ref}
+      className={`project-card animate fade-up animate--delay-${delay} ${inView ? 'in-view' : ''}`}
+    >
+      {image ? (
+        <img src={image} alt={title} className="project-card__image" />
+      ) : (
+        <div className="project-card__image" role="img" aria-label={`Photo for ${title} — placeholder`} />
+      )}
+      <div className="project-card__body">
+        <h3 className="project-card__title">{title}</h3>
+        <p className="project-card__region">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          {region}
+        </p>
+        <Link to="/projects" className="project-card__link">
+          View Project <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </article>
   );
 }

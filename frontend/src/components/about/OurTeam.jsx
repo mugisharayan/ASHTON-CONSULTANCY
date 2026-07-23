@@ -12,6 +12,8 @@
  *   3. Set it as the `photo` value in the TEAM array
  */
 
+import { useInView } from '../../hooks/useInView';
+
 const TEAM = [
   {
     id: 1,
@@ -52,30 +54,23 @@ function AvatarPlaceholder({ name }) {
 }
 
 export default function OurTeam() {
+  const { ref: headingRef, inView: headingIn } = useInView();
+
   return (
     <section className="section section--alt" aria-labelledby="team-heading">
       <div className="container">
 
-        <div className="section-heading">
+        <div
+          ref={headingRef}
+          className={`section-heading animate fade-up ${headingIn ? 'in-view' : ''}`}
+        >
           <h2 id="team-heading">Our Team</h2>
           <p>The people behind our evidence-based solutions.</p>
         </div>
 
         <div className="team__grid">
-          {TEAM.map(({ id, name, role, photo }) => (
-            <article key={id} className="team-card">
-              {photo ? (
-                <img
-                  src={photo}
-                  alt={name}
-                  className="team-card__photo"
-                />
-              ) : (
-                <AvatarPlaceholder name={name} />
-              )}
-              <h3 className="team-card__name">{name}</h3>
-              <p className="team-card__role">{role}</p>
-            </article>
+          {TEAM.map(({ id, name, role, photo }, index) => (
+            <TeamCard key={id} name={name} role={role} photo={photo} delay={index + 1} />
           ))}
         </div>
 
@@ -85,5 +80,23 @@ export default function OurTeam() {
 
       </div>
     </section>
+  );
+}
+
+function TeamCard({ name, role, photo, delay }) {
+  const { ref, inView } = useInView();
+  return (
+    <article
+      ref={ref}
+      className={`team-card animate fade-up animate--delay-${delay} ${inView ? 'in-view' : ''}`}
+    >
+      {photo ? (
+        <img src={photo} alt={name} className="team-card__photo" />
+      ) : (
+        <AvatarPlaceholder name={name} />
+      )}
+      <h3 className="team-card__name">{name}</h3>
+      <p className="team-card__role">{role}</p>
+    </article>
   );
 }

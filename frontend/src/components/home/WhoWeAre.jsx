@@ -9,16 +9,19 @@
  */
 
 import { Link } from 'react-router-dom';
-import fieldPhoto from '../../assets/hero.png'; // replace with actual photo
+import fieldPhoto from '../../assets/hero.png';
+import { useInView } from '../../hooks/useInView';
 
 export default function WhoWeAre() {
+  const { ref: leftRef,  inView: leftIn  } = useInView();
+  const { ref: rightRef, inView: rightIn } = useInView();
+
   return (
     <section className="section" aria-labelledby="who-we-are-heading">
       <div className="container">
         <div className="who-we-are__grid">
 
-          {/* Left: text content */}
-          <div>
+          <div ref={leftRef} className={`animate fade-right ${leftIn ? 'in-view' : ''}`}>
             <p className="who-we-are__label">Who We Are</p>
             <h2 className="who-we-are__title" id="who-we-are-heading">
               A Trusted Partner in Research &amp; Advisory
@@ -36,14 +39,11 @@ export default function WhoWeAre() {
               sustainable impact.
             </p>
             <div className="who-we-are__cta">
-              <Link to="/about" className="btn-outline-accent">
-                Learn More About Us
-              </Link>
+              <Link to="/about" className="btn-outline-accent">Learn More About Us</Link>
             </div>
           </div>
 
-          {/* Right: photo */}
-          <div>
+          <div ref={rightRef} className={`animate fade-left ${rightIn ? 'in-view' : ''}`}>
             <img
               src={fieldPhoto}
               alt="ASHTON CONSULTANCY researcher working in a crop field with a tablet"

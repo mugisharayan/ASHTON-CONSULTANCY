@@ -10,6 +10,8 @@
  * To update a step, edit the STEPS array below.
  */
 
+import { useInView } from '../../hooks/useInView';
+
 const STEPS = [
   {
     id: 'research',
@@ -87,31 +89,47 @@ const STEPS = [
 ];
 
 export default function OurApproach() {
+  const { ref: headingRef, inView: headingIn } = useInView();
+
   return (
     <section className="section section--dark" aria-labelledby="approach-heading">
       <div className="container">
 
-        <div className="section-heading">
+        <div
+          ref={headingRef}
+          className={`section-heading animate fade-up ${headingIn ? 'in-view' : ''}`}
+        >
           <h2 id="approach-heading">Our Approach</h2>
-          <p>
-            We use a systematic and evidence-based approach to deliver
-            measurable results.
-          </p>
+          <p>We use a systematic and evidence-based approach to deliver measurable results.</p>
         </div>
 
         <div className="approach__steps">
-          {STEPS.map(({ id, label, description, icon }) => (
-            <div key={id} className="approach__step">
-              <div className="approach__step-icon" aria-hidden="true">
-                {icon}
-              </div>
-              <p className="approach__step-label">{label}</p>
-              <p className="approach__step-desc">{description}</p>
-            </div>
+          {STEPS.map(({ id, label, description, icon }, index) => (
+            <ApproachStep
+              key={id}
+              label={label}
+              description={description}
+              icon={icon}
+              delay={index + 1}
+            />
           ))}
         </div>
 
       </div>
     </section>
+  );
+}
+
+function ApproachStep({ label, description, icon, delay }) {
+  const { ref, inView } = useInView();
+  return (
+    <div
+      ref={ref}
+      className={`approach__step animate fade-up animate--delay-${delay} ${inView ? 'in-view' : ''}`}
+    >
+      <div className="approach__step-icon" aria-hidden="true">{icon}</div>
+      <p className="approach__step-label">{label}</p>
+      <p className="approach__step-desc">{description}</p>
+    </div>
   );
 }

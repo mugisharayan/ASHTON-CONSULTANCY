@@ -12,7 +12,8 @@
  * (man kneeling in maize field with tablet/clipboard).
  */
 
-import fieldPhoto from '../../assets/hero.png'; // replace with actual photo
+import fieldPhoto from '../../assets/hero.png';
+import { useInView } from '../../hooks/useInView';
 
 const VALUES = [
   {
@@ -49,13 +50,15 @@ const VALUES = [
 ];
 
 export default function OurStory() {
+  const { ref: leftRef,  inView: leftIn  } = useInView();
+  const { ref: rightRef, inView: rightIn } = useInView();
+
   return (
     <section className="section" aria-labelledby="our-story-heading">
       <div className="container">
         <div className="our-story__grid">
 
-          {/* Left: text + values */}
-          <div>
+          <div ref={leftRef} className={`animate fade-right ${leftIn ? 'in-view' : ''}`}>
             <p className="our-story__label">Our Story</p>
             <h2 className="our-story__title" id="our-story-heading">
               Founded on a Passion for Excellence
@@ -73,7 +76,6 @@ export default function OurStory() {
               because we believe that good data, honestly analysed, is the
               foundation of every lasting positive change.
             </p>
-
             <div className="our-story__values">
               {VALUES.map(({ id, title, text, icon }) => (
                 <div key={id} className="our-story__value-item">
@@ -87,8 +89,7 @@ export default function OurStory() {
             </div>
           </div>
 
-          {/* Right: photo */}
-          <div>
+          <div ref={rightRef} className={`animate fade-left ${rightIn ? 'in-view' : ''}`}>
             <img
               src={fieldPhoto}
               alt="ASHTON CONSULTANCY researcher kneeling in a maize field reviewing data on a tablet"
