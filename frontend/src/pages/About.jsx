@@ -21,7 +21,7 @@ import OurTeam     from '../components/about/OurTeam';
 export default function About() {
   return (
     <>
-      <PageBanner title="About Us" page="About Us" />
+      <PageBanner title="About Us" subtitle="Who we are, what drives us, and the team behind our work" />
       <OurStory />
       <OurApproach />
       <OurTeam />

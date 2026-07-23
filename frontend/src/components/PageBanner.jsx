@@ -1,26 +1,27 @@
 /**
  * PageBanner
  * ----------
- * The dark-teal hero strip shown at the top of every interior page.
- * Displays the page title and a "Home / [Page]" breadcrumb.
+ * The hero strip shown at the top of every interior page.
+ * Dark teal background with a subtle dot pattern overlay,
+ * a page title, an accent divider, and an optional subtitle.
  *
  * Props:
- *   title {string} — the page heading displayed in white (e.g. "About Us")
- *   page  {string} — the breadcrumb label (e.g. "About Us")
+ *   title    {string} — main page heading (e.g. "About Us")
+ *   subtitle {string} — short descriptive line beneath the title
  */
 
-import { Link } from 'react-router-dom';
-
-export default function PageBanner({ title, page }) {
+export default function PageBanner({ title, subtitle }) {
   return (
     <div className="page-banner">
+      {/* Decorative dot grid overlay — pure CSS, no image needed */}
+      <div className="page-banner__pattern" aria-hidden="true" />
+
       <div className="container">
-        <h1>{title}</h1>
-        <nav className="page-banner__breadcrumb" aria-label="Breadcrumb">
-          <Link to="/">Home</Link>
-          <span aria-hidden="true">/</span>
-          <span>{page}</span>
-        </nav>
+        <div className="page-banner__content">
+          <div className="page-banner__accent" aria-hidden="true" />
+          <h1 className="page-banner__title">{title}</h1>
+          {subtitle && <p className="page-banner__subtitle">{subtitle}</p>}
+        </div>
       </div>
     </div>
   );

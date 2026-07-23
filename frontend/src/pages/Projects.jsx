@@ -17,7 +17,7 @@ import ProjectGrid  from '../components/projects/ProjectGrid';
 export default function Projects() {
   return (
     <>
-      <PageBanner title="Projects / Portfolio" page="Projects" />
+      <PageBanner title="Projects & Portfolio" subtitle="A track record of impactful research and consultancy across East Africa" />
       <ProjectGrid />
     </>
   );

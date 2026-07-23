@@ -19,7 +19,7 @@ import NewsletterBand from '../components/insights/NewsletterBand';
 export default function Insights() {
   return (
     <>
-      <PageBanner title="Insights & Resources" page="Insights" />
+      <PageBanner title="Insights & Resources" subtitle="Research updates, field notes, and expert perspectives from our team" />
       <ArticleGrid />
       <NewsletterBand />
     </>

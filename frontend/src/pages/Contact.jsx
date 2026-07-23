@@ -18,7 +18,7 @@ import ContactSection  from '../components/home/ContactSection';
 export default function Contact() {
   return (
     <>
-      <PageBanner title="Contact Us" page="Contact" />
+      <PageBanner title="Contact Us" subtitle="Reach out to our team — we'd love to hear about your project" />
       <ContactSection />
     </>
   );

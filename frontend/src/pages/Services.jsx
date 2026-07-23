@@ -19,7 +19,7 @@ import FaqAccordion  from '../components/services/FaqAccordion';
 export default function Services() {
   return (
     <>
-      <PageBanner title="Our Services" page="Services" />
+      <PageBanner title="Our Services" subtitle="Evidence-based research and advisory solutions across agriculture, social, and environment" />
       <ServiceTabs />
       <FaqAccordion />
     </>
