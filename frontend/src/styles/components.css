@@ -125,6 +125,33 @@
   border-radius: 2px;
 }
 
+/* Dark / light mode toggle button */
+.navbar__theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  flex-shrink: 0;
+}
+
+.navbar__theme-toggle:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+[data-theme="dark"] .navbar__theme-toggle {
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
 /* Mobile menu toggle — hidden on desktop */
 .navbar__toggle {
   display: none;
@@ -354,4 +381,35 @@
   .footer__grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ============================================================
+   DARK MODE COMPONENT OVERRIDES
+   Adjustments for components that need more than just
+   variable swaps — e.g. navbar background, card borders.
+   ============================================================ */
+
+[data-theme="dark"] .navbar {
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+[data-theme="dark"] .navbar__links a {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .navbar__toggle span {
+  background-color: #e2e8f0;
+}
+
+[data-theme="dark"] .navbar__links {
+  background-color: #1e293b;
+  border-top-color: #334155;
+}
+
+[data-theme="dark"] .footer__logo {
+  /* Remove white background on footer logo in dark mode —
+     the dark background provides enough contrast */
+  background-color: transparent;
+  padding: 0;
 }

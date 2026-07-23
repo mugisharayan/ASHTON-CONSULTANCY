@@ -63,3 +63,33 @@
   /* --- Transitions --- */
   --transition: 0.2s ease;
 }
+
+/*
+ * Dark Mode Overrides
+ * -------------------
+ * Applied when <html data-theme="dark"> is set by useTheme.js.
+ * Only color variables are overridden — all other tokens stay the same.
+ * Every component uses these variables so dark mode works site-wide
+ * without touching any component CSS.
+ */
+[data-theme="dark"] {
+  --color-primary:        #4ade80;        /* lime green — headings, accents on dark bg */
+  --color-accent:         #4ade80;        /* lime green CTA buttons */
+  --color-accent-hover:   #22c55e;        /* darker green on hover */
+  --color-body:           #e2e8f0;        /* light gray — main body text */
+  --color-subtle:         #94a3b8;        /* muted gray — secondary text */
+  --color-bg:             #0f172a;        /* deep navy — page background */
+  --color-bg-alt:         #1e293b;        /* slightly lighter navy — alternate sections */
+  --color-border:         #334155;        /* dark border for cards and dividers */
+  --color-white:          #f8fafc;        /* near-white — used for text on dark surfaces */
+
+  /* Status badges stay readable in dark mode */
+  --color-status-completed:    #86efac;
+  --color-status-completed-bg: #14532d;
+  --color-status-ongoing:      #fcd34d;
+  --color-status-ongoing-bg:   #78350f;
+
+  /* Shadows are more subtle on dark backgrounds */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-nav:  0 2px 4px rgba(0, 0, 0, 0.3);
+}

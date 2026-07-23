@@ -179,6 +179,52 @@ button {
   color: var(--color-white);
 }
 
+/* ============================================================
+   DARK MODE — GLOBAL OVERRIDES
+   Targets elements that use hardcoded colors or need extra
+   treatment beyond CSS variable swaps.
+   ============================================================ */
+
+[data-theme="dark"] body {
+  background-color: var(--color-bg);
+  color: var(--color-body);
+}
+
+/* Cards */
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .project-card--full,
+[data-theme="dark"] .article-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .faq__card {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+/* Form inputs */
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select,
+[data-theme="dark"] .form-group textarea {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .form-group label {
+  color: #e2e8f0;
+}
+
+/* Map placeholder */
+[data-theme="dark"] .contact__map-placeholder {
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+/* Section headings on light sections */
+[data-theme="dark"] .section-heading h2 {
+  color: #e2e8f0;
+}
+
 /*
  * Utility: .sr-only
  * Visually hides an element while keeping it accessible to screen readers.
