@@ -63,7 +63,7 @@
 /* ============================================================
    NAVBAR
    Main navigation bar. White background, logo left,
-   links center, CTA button right.
+   links center, CTA + theme toggle right.
    ============================================================ */
 
 .navbar {
@@ -71,71 +71,121 @@
   box-shadow: var(--shadow-nav);
   position: sticky;
   top: 0;
-  z-index: 100; /* sits above page content when scrolling */
+  z-index: 100;
 }
 
 .navbar__inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-block: var(--space-4); /* increased from space-3 to give taller logo room */
+  padding-block: var(--space-3);
+  gap: var(--space-6);
 }
 
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  flex-shrink: 0;
   text-decoration: none;
 }
 
 .navbar__logo img {
   height: 64px;
   width: auto;
-  object-fit: contain; /* prevents logo from being cropped or stretched */
+  object-fit: contain;
 }
 
+/* Nav links */
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-1);
+  flex: 1;
+  justify-content: center;
 }
 
 .navbar__links a {
   font-size: var(--text-sm);
   font-weight: 500;
   color: var(--color-primary);
-  transition: color var(--transition);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius);
+  transition: color var(--transition), background-color var(--transition);
   position: relative;
+  white-space: nowrap;
 }
 
-.navbar__links a:hover,
+.navbar__links a:hover {
+  color: var(--color-accent);
+  background-color: rgba(124, 187, 63, 0.07);
+}
+
 .navbar__links a.active {
   color: var(--color-accent);
+  font-weight: 600;
 }
 
-/* Underline indicator for active route */
-.navbar__links a.active::after {
+/* Animated underline on active link */
+.navbar__links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
+  bottom: 2px;
+  left: var(--space-3);
+  right: var(--space-3);
   height: 2px;
   background-color: var(--color-accent);
   border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+  transform-origin: left;
 }
 
-/* Scrolled state — stronger shadow and slight background shift */
+.navbar__links a.active::after {
+  transform: scaleX(1);
+}
+
+/* Right side: CTA + theme toggle grouped */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* CTA button — solid accent with phone icon */
+.navbar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-accent);
+  white-space: nowrap;
+  transition: background-color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.navbar__cta:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Scrolled state */
 .navbar--scrolled {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .navbar--scrolled {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   background-color: #162032;
 }
 
-/* Dark / light mode toggle button */
+/* Theme toggle */
 .navbar__theme-toggle {
   display: flex;
   align-items: center;
@@ -147,8 +197,8 @@
   background: none;
   color: var(--color-primary);
   cursor: pointer;
-  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
   flex-shrink: 0;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
 }
 
 .navbar__theme-toggle:hover {
@@ -162,7 +212,7 @@
   border-color: #334155;
 }
 
-/* Mobile menu toggle — hidden on desktop */
+/* Mobile hamburger — hidden on desktop */
 .navbar__toggle {
   display: none;
   flex-direction: column;
@@ -198,7 +248,7 @@
     flex-direction: column;
     align-items: flex-start;
     padding: var(--space-4) var(--space-6);
-    gap: var(--space-4);
+    gap: var(--space-1);
     box-shadow: var(--shadow-card);
     border-top: 1px solid var(--color-border);
   }
@@ -207,19 +257,23 @@
     display: flex;
   }
 
-  /* Show active underline inside mobile menu */
   .navbar__links a.active {
-    color: var(--color-accent);
     padding-left: var(--space-3);
     border-left: 3px solid var(--color-accent);
   }
 
   .navbar__links a.active::after {
-    display: none; /* hide the bottom underline on mobile, use left border instead */
+    display: none;
   }
 
+  /* Hide CTA text on mobile, keep icon only */
+  .navbar__cta span { display: none; }
   .navbar__cta {
-    display: none;
+    padding: var(--space-2);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
   }
 }
 

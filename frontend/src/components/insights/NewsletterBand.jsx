@@ -23,8 +23,9 @@ export default function NewsletterBand() {
   const [email, setEmail]         = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError]         = useState('');
+  const [loading, setLoading]     = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
@@ -32,16 +33,18 @@ export default function NewsletterBand() {
       setError('Please enter your email address.');
       return;
     }
-
     if (!isValidEmail(email)) {
       setError('Please enter a valid email address.');
       return;
     }
 
+    setLoading(true);
     /*
      * TODO: replace with your API call, e.g.:
      *   await fetch('/api/newsletter', { method: 'POST', body: JSON.stringify({ email }) })
      */
+    await new Promise(res => setTimeout(res, 1500));
+    setLoading(false);
     setSubmitted(true);
     setEmail('');
   }
@@ -68,10 +71,9 @@ export default function NewsletterBand() {
             onSubmit={handleSubmit}
             noValidate
             aria-label="Newsletter signup form"
+            aria-busy={loading}
           >
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email address
-            </label>
+            <label htmlFor="newsletter-email" className="sr-only">Email address</label>
             <input
               type="email"
               id="newsletter-email"
@@ -80,10 +82,13 @@ export default function NewsletterBand() {
               value={email}
               onChange={e => setEmail(e.target.value)}
               autoComplete="email"
+              disabled={loading}
               aria-describedby={error ? 'newsletter-error' : undefined}
             />
-            <button type="submit" className="newsletter__btn">
-              Subscribe
+            <button type="submit" className="newsletter__btn form-btn" disabled={loading}>
+              {loading ? (
+                <><span className="form-spinner form-spinner--light" aria-hidden="true" /> Subscribing…</>
+              ) : 'Subscribe'}
             </button>
           </form>
         )}

@@ -83,32 +83,34 @@ const EMPTY_FORM = {
 };
 
 export default function ContactSection() {
-  const [form, setForm]       = useState(EMPTY_FORM);
-  const [error, setError]     = useState('');
+  const [form, setForm]           = useState(EMPTY_FORM);
+  const [error, setError]         = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading]     = useState(false);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setError('');
 
-    // Basic required-field validation
     const required = ['fullName', 'email', 'service', 'message'];
     const missing  = required.filter(field => !form[field].trim());
-
     if (missing.length > 0) {
       setError('Please fill in all required fields.');
       return;
     }
 
+    setLoading(true);
     /*
-     * TODO: replace this block with your actual API call, e.g.:
+     * TODO: replace the simulated delay with your actual API call, e.g.:
      *   await fetch('/api/contact', { method: 'POST', body: JSON.stringify(form) })
      */
+    await new Promise(res => setTimeout(res, 1500));
+    setLoading(false);
     setSubmitted(true);
     setForm(EMPTY_FORM);
   }
@@ -151,7 +153,7 @@ export default function ContactSection() {
                 ✓ Thank you! Your message has been sent. We&apos;ll be in touch shortly.
               </p>
             ) : (
-              <form className="contact__form" onSubmit={handleSubmit} noValidate>
+              <form className="contact__form" onSubmit={handleSubmit} noValidate aria-busy={loading}>
 
                 <div className="contact__form-row">
                   <div className="form-group">
@@ -164,6 +166,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="John Doe"
                       autoComplete="name"
+                      disabled={loading}
                     />
                   </div>
                   <div className="form-group">
@@ -176,6 +179,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="Your organisation"
                       autoComplete="organization"
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -191,6 +195,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="you@example.com"
                       autoComplete="email"
+                      disabled={loading}
                     />
                   </div>
                   <div className="form-group">
@@ -203,6 +208,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="+256 700 000 000"
                       autoComplete="tel"
+                      disabled={loading}
                     />
                   </div>
                 </div>
@@ -214,6 +220,7 @@ export default function ContactSection() {
                     name="service"
                     value={form.service}
                     onChange={handleChange}
+                    disabled={loading}
                   >
                     <option value="">Select a service…</option>
                     {SERVICES_OPTIONS.map(opt => (
@@ -230,6 +237,7 @@ export default function ContactSection() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="Tell us about your project or enquiry…"
+                    disabled={loading}
                   />
                 </div>
 
@@ -239,8 +247,10 @@ export default function ContactSection() {
                   </p>
                 )}
 
-                <button type="submit" className="btn-primary">
-                  Send Message
+                <button type="submit" className="btn-primary form-btn" disabled={loading}>
+                  {loading ? (
+                    <><span className="form-spinner" aria-hidden="true" /> Sending…</>
+                  ) : 'Send Message'}
                 </button>
 
               </form>
