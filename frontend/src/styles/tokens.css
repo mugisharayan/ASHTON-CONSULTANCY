@@ -1,0 +1,65 @@
+/*
+ * Design Tokens
+ * -------------
+ * All brand colors, fonts, and spacing live here as CSS custom properties.
+ * Never use raw hex values in component stylesheets — always reference these
+ * variables. This makes brand updates a single-file change.
+ */
+
+:root {
+  /* --- Colors --- */
+  --color-primary:        #0B4A3A; /* deep forest/teal — headers, nav, footer, dark bands */
+  --color-accent:         #7CBB3F; /* lime/leaf green — buttons, highlights, active states */
+  --color-accent-hover:   #669e32; /* slightly darker lime for button hover states */
+  --color-body:           #1F2A24; /* near-black — main body text */
+  --color-subtle:         #6B7280; /* medium gray — subtitles, captions, secondary text */
+  --color-bg:             #FFFFFF; /* default page background */
+  --color-bg-alt:         #F7F8F7; /* alternating light-gray section background */
+  --color-border:         #E2E8E4; /* light border for cards and dividers */
+  --color-white:          #FFFFFF;
+
+  /* Status badge colors */
+  --color-status-completed:    #166534; /* dark green text */
+  --color-status-completed-bg: #DCFCE7; /* light green background */
+  --color-status-ongoing:      #92400E; /* dark amber text */
+  --color-status-ongoing-bg:   #FEF3C7; /* light amber background */
+
+  /* --- Typography --- */
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-heading: 'Poppins', 'Inter', system-ui, sans-serif;
+
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+  --text-5xl:  3rem;      /* 48px */
+
+  /* --- Spacing --- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* --- Layout --- */
+  --max-width:     1200px; /* maximum content width, centered on page */
+  --border-radius: 6px;
+  --border-radius-pill: 999px; /* used for pill-shaped buttons and badges */
+
+  /* --- Shadows --- */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-nav:  0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* --- Transitions --- */
+  --transition: 0.2s ease;
+}

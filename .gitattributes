@@ -1,0 +1,15 @@
+# .gitattributes
+# --------------
+# Enforces consistent LF line endings for all text files across
+# Windows, macOS, and Linux. Without this, Windows developers get
+# CRLF warnings and diffs become noisy with whitespace-only changes.
+
+* text=auto eol=lf
+
+# Binary files — never touch line endings on these
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.ico  binary
+*.svg  binary

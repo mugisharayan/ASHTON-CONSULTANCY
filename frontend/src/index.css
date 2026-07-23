@@ -1,0 +1,180 @@
+/*
+ * Base Styles
+ * -----------
+ * Imports design tokens, loads fonts, and applies a minimal browser reset.
+ * This file is imported once in main.jsx and applies globally.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap');
+@import './styles/tokens.css';
+
+/* --- Box-sizing reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Base document --- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-body);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-body);
+  line-height: 1.2;
+}
+
+/* --- Links --- */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* --- Images --- */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Lists --- */
+ul, ol {
+  list-style: none;
+}
+
+/* --- Buttons --- */
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+  border: none;
+  background: none;
+}
+
+/*
+ * Utility: .container
+ * Centers content and applies consistent horizontal padding.
+ * Used inside every section so the max-width is enforced uniformly.
+ */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+/*
+ * Utility: .section
+ * Standard vertical padding for page sections.
+ */
+.section {
+  padding-block: var(--space-16);
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section--dark {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/*
+ * Utility: .section-heading
+ * Centered heading block used at the top of most sections.
+ */
+.section-heading {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+.section-heading h2 {
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.section-heading p {
+  color: var(--color-subtle);
+  font-size: var(--text-lg);
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* Dark section overrides for section-heading */
+.section--dark .section-heading h2 {
+  color: var(--color-white);
+}
+
+/*
+ * Utility buttons
+ * btn-primary  — solid lime-green pill (main CTA)
+ * btn-outline  — outlined white pill (used over dark/hero backgrounds)
+ * btn-outline-accent — outlined lime-green pill (used on light backgrounds)
+ */
+.btn-primary {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-accent);
+  transition: background-color var(--transition), border-color var(--transition);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: transparent;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-white);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-white);
+  color: var(--color-primary);
+}
+
+.btn-outline-accent {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  background-color: transparent;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-accent);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.btn-outline-accent:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}

@@ -1,0 +1,33 @@
+# =============================================================
+# .gitignore — SHUK / ASHTON CONSULTANCY
+# =============================================================
+# Files and folders listed here are NEVER committed to git.
+# Any developer who clones this repo runs "npm install" inside
+# frontend/ to restore dependencies locally.
+# =============================================================
+
+# --- Dependencies ---
+# Never commit node_modules. It is large, OS-specific, and
+# fully reproducible from package.json via "npm install".
+node_modules/
+
+# --- Build output ---
+# Vite compiles the app into dist/ for deployment.
+# This is generated, not source — no need to track it.
+dist/
+build/
+
+# --- Environment files ---
+# These may contain API keys, secrets, or local config.
+# Each developer maintains their own .env file locally.
+.env
+.env.local
+.env.*.local
+
+# --- Editor / OS files ---
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+
+# --- Vite cache ---
+.vite/
