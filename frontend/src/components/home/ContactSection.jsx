@@ -119,7 +119,7 @@ export default function ContactSection() {
 
         <div className="section-heading">
           <h2 id="contact-heading">Contact Us</h2>
-          <p>Get in touch — we&apos;d love to hear from you.</p>
+          <p>Get in touch, we&apos;d love to hear from you.</p>
         </div>
 
         <div className="contact__grid">

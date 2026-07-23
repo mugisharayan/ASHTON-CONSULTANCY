@@ -1,0 +1,263 @@
+/*
+ * About Page Styles
+ * -----------------
+ * Styles for all About page sections:
+ *   OurStory, OurApproach, OurTeam
+ *
+ * All values reference tokens.css variables.
+ */
+
+/* ============================================================
+   OUR STORY
+   Two-column layout: text + vision/mission/values left,
+   photo right.
+   ============================================================ */
+
+.our-story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.our-story__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-3);
+}
+
+.our-story__title {
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-5);
+}
+
+.our-story__body {
+  color: var(--color-subtle);
+  line-height: 1.8;
+  margin-bottom: var(--space-4);
+}
+
+/* Vision / Mission / Values rows */
+.our-story__values {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.our-story__value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.our-story__value-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(124, 187, 63, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.our-story__value-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+
+.our-story__value-text {
+  font-size: var(--text-sm);
+  color: var(--color-subtle);
+  line-height: 1.6;
+}
+
+.our-story__image {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+  .our-story__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Show image before text on mobile */
+  .our-story__image {
+    height: 300px;
+    order: -1;
+  }
+
+  .our-story__grid > div:first-child {
+    order: 1;
+  }
+}
+
+/* ============================================================
+   OUR APPROACH
+   Dark teal band with a 6-step horizontal process row.
+   ============================================================ */
+
+.approach__steps {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-4);
+  position: relative;
+}
+
+/* Horizontal connector line between steps */
+.approach__steps::before {
+  content: '';
+  position: absolute;
+  top: 28px; /* vertically centered on the icon circles */
+  left: calc(100% / 12); /* starts at center of first icon */
+  right: calc(100% / 12);
+  height: 2px;
+  background-color: rgba(124, 187, 63, 0.35);
+  z-index: 0;
+}
+
+.approach__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.approach__step-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+  flex-shrink: 0;
+}
+
+.approach__step-label {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-white);
+  margin-bottom: var(--space-2);
+}
+
+.approach__step-desc {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .approach__steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .approach__steps::before {
+    display: none; /* connector line doesn't work on wrapped grid */
+  }
+}
+
+@media (max-width: 560px) {
+  .approach__steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================================
+   OUR TEAM
+   4-column card grid with circular headshot, name, title.
+   ============================================================ */
+
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-10);
+}
+
+.team-card {
+  text-align: center;
+  padding: var(--space-8) var(--space-5);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.team-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+.team-card__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-4);
+  border: 3px solid var(--color-accent);
+  /* Placeholder background shown when no real photo is provided */
+  background-color: var(--color-bg-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-card__photo-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background-color: var(--color-bg-alt);
+  border: 3px solid var(--color-accent);
+  margin: 0 auto var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-subtle);
+}
+
+.team-card__name {
+  font-size: var(--text-base);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+}
+
+.team-card__role {
+  font-size: var(--text-sm);
+  color: var(--color-subtle);
+}
+
+.team__cta {
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .team__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .team__grid {
+    grid-template-columns: 1fr;
+  }
+}

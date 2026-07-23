@@ -31,7 +31,7 @@ export default function WhoWeAre() {
             </p>
             <p className="who-we-are__body">
               We help organisations make informed decisions through accurate
-              data, advanced analytics, and practical solutions — combining
+              data, advanced analytics, and practical solutions, combining
               local knowledge with modern technology to deliver measurable,
               sustainable impact.
             </p>
