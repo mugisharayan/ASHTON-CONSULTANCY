@@ -1,22 +1,24 @@
 /**
  * Projects / Portfolio Page
  * -------------------------
- * Sections (to be built):
- *   1. PageBanner
- *   2. Filter tabs (All, Completed, Ongoing)
- *   3. Project card grid with status badges
- *   4. Load More button
+ * Assembles all Projects page sections in order.
+ * Each section is its own component in src/components/projects/.
+ *
+ * Section order (matches the spec):
+ *   1. PageBanner   — dark teal title strip with breadcrumb
+ *   2. ProjectGrid  — filter tabs + card grid + load more
  */
 
-import PageBanner from '../components/PageBanner';
+import '../styles/projects.css';
+
+import PageBanner   from '../components/PageBanner';
+import ProjectGrid  from '../components/projects/ProjectGrid';
 
 export default function Projects() {
   return (
     <>
       <PageBanner title="Projects / Portfolio" page="Projects" />
-      <p style={{ padding: '4rem', textAlign: 'center', color: '#6B7280' }}>
-        Projects page — coming soon
-      </p>
+      <ProjectGrid />
     </>
   );
 }
