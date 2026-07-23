@@ -19,8 +19,9 @@ import HeroSection      from '../components/home/HeroSection';
 import WhoWeAre         from '../components/home/WhoWeAre';
 import CoreServices     from '../components/home/CoreServices';
 import ImpactStats      from '../components/home/ImpactStats';
-import FeaturedProjects from '../components/home/FeaturedProjects';
-import ContactSection   from '../components/home/ContactSection';
+import FeaturedProjects      from '../components/home/FeaturedProjects';
+import TestimonialsSection   from '../components/home/TestimonialsSection';
+import ContactSection        from '../components/home/ContactSection';
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <CoreServices />
       <ImpactStats />
       <FeaturedProjects />
+      <TestimonialsSection />
       <ContactSection />
     </>
   );
