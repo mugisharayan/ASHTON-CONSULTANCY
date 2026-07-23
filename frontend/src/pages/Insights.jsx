@@ -1,22 +1,27 @@
 /**
  * Insights & Resources Page
  * -------------------------
- * Sections (to be built):
- *   1. PageBanner
- *   2. Category filter tabs
- *   3. Article card grid
- *   4. Newsletter signup band
+ * Assembles all Insights page sections in order.
+ * Each section is its own component in src/components/insights/.
+ *
+ * Section order (matches the spec):
+ *   1. PageBanner      — dark teal title strip with breadcrumb
+ *   2. ArticleGrid     — category filter tabs + article card grid
+ *   3. NewsletterBand  — email signup on dark teal background
  */
 
-import PageBanner from '../components/PageBanner';
+import '../styles/insights.css';
+
+import PageBanner     from '../components/PageBanner';
+import ArticleGrid    from '../components/insights/ArticleGrid';
+import NewsletterBand from '../components/insights/NewsletterBand';
 
 export default function Insights() {
   return (
     <>
       <PageBanner title="Insights & Resources" page="Insights" />
-      <p style={{ padding: '4rem', textAlign: 'center', color: '#6B7280' }}>
-        Insights page — coming soon
-      </p>
+      <ArticleGrid />
+      <NewsletterBand />
     </>
   );
 }
