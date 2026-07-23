@@ -405,6 +405,49 @@
 }
 
 /* ============================================================
+   BACK TO TOP BUTTON
+   Fixed floating button in the bottom-right corner.
+   Only rendered when the user has scrolled past 400px
+   (controlled in BackToTop.jsx via useScrolled).
+   ============================================================ */
+
+.back-to-top {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.back-to-top:hover {
+  background-color: var(--color-accent-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.back-to-top:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 560px) {
+  .back-to-top {
+    bottom: var(--space-5);
+    right: var(--space-5);
+  }
+}
+
+/* ============================================================
    DARK MODE COMPONENT OVERRIDES
    Adjustments for components that need more than just
    variable swaps — e.g. navbar background, card borders.
