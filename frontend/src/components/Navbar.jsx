@@ -12,7 +12,7 @@
 
 import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo.jpg';
 
 const NAV_LINKS = [
   { label: 'Home',      to: '/'         },
