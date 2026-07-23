@@ -1,22 +1,27 @@
 /**
  * Services Page
  * -------------
- * Sections (to be built):
- *   1. PageBanner
- *   2. Filter tabs (All, Field Research, Data Analysis, GIS, Agricultural Advisory)
- *   3. Service detail blocks (one per tab)
- *   4. FAQ accordion
+ * Assembles all Services page sections in order.
+ * Each section is its own component in src/components/services/.
+ *
+ * Section order (matches the spec):
+ *   1. PageBanner    — dark teal title strip with breadcrumb
+ *   2. ServiceTabs   — filter tabs + service detail blocks
+ *   3. FaqAccordion  — expand/collapse FAQ + contact card
  */
 
-import PageBanner from '../components/PageBanner';
+import '../styles/services.css';
+
+import PageBanner    from '../components/PageBanner';
+import ServiceTabs   from '../components/services/ServiceTabs';
+import FaqAccordion  from '../components/services/FaqAccordion';
 
 export default function Services() {
   return (
     <>
       <PageBanner title="Our Services" page="Services" />
-      <p style={{ padding: '4rem', textAlign: 'center', color: '#6B7280' }}>
-        Services page — coming soon
-      </p>
+      <ServiceTabs />
+      <FaqAccordion />
     </>
   );
 }

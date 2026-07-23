@@ -1,0 +1,240 @@
+/*
+ * Services Page Styles
+ * --------------------
+ * Styles for all Services page sections:
+ *   ServiceTabs (filter tabs + service detail blocks)
+ *   FaqAccordion
+ *
+ * All values reference tokens.css variables.
+ */
+
+/* ============================================================
+   SERVICE TABS
+   Horizontal pill/tab row + one detail block visible at a time.
+   ============================================================ */
+
+.service-tabs {
+  padding-block: var(--space-16);
+}
+
+/* Tab row */
+.service-tabs__nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-12);
+}
+
+.service-tabs__btn {
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-accent);
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.service-tabs__btn:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Active tab — solid lime green */
+.service-tabs__btn.active {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* Service detail block */
+.service-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+  align-items: center;
+}
+
+.service-detail__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-3);
+}
+
+.service-detail__title {
+  font-size: var(--text-3xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+}
+
+.service-detail__desc {
+  color: var(--color-subtle);
+  line-height: 1.8;
+  margin-bottom: var(--space-6);
+}
+
+/* Checklist — two sub-columns */
+.service-detail__checklist {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.service-detail__check-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-body);
+}
+
+.service-detail__check-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(124, 187, 63, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+.service-detail__image {
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  background-color: var(--color-bg-alt); /* placeholder while image loads */
+}
+
+@media (max-width: 768px) {
+  .service-detail__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-detail__image {
+    height: 280px;
+  }
+
+  .service-detail__checklist {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   FAQ ACCORDION
+   Expand/collapse question list with a "Still have questions?"
+   card on the right.
+   ============================================================ */
+
+.faq {
+  background-color: var(--color-primary);
+  padding-block: var(--space-16);
+}
+
+.faq__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Accordion list */
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.faq__item {
+  background-color: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.faq__question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) var(--space-6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  font-weight: 500;
+  gap: var(--space-4);
+  transition: background-color var(--transition);
+}
+
+.faq__question:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.faq__chevron {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  transition: transform var(--transition);
+}
+
+.faq__chevron.open {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  padding: 0 var(--space-6) var(--space-5);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+}
+
+/* "Still have questions?" card */
+.faq__card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius);
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.faq__card-icon {
+  width: 56px;
+  height: 56px;
+  background-color: rgba(124, 187, 63, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+  color: var(--color-accent);
+}
+
+.faq__card-title {
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.faq__card-text {
+  font-size: var(--text-sm);
+  color: var(--color-subtle);
+  line-height: 1.7;
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .faq__grid {
+    grid-template-columns: 1fr;
+  }
+}
