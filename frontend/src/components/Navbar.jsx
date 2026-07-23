@@ -10,10 +10,11 @@
  * - Clicking a nav link on mobile closes the menu automatically.
  */
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import { useTheme } from '../hooks/useTheme';
+import { useScrolled } from '../hooks/useScrolled';
 
 const NAV_LINKS = [
   { label: 'Home',      to: '/'         },
@@ -27,15 +28,27 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-
+  const scrolled = useScrolled();
   const isDark = theme === 'dark';
+  const navRef = useRef(null);
 
   function closeMenu() {
     setMenuOpen(false);
   }
 
+  // Close mobile menu when user clicks outside the navbar
+  useEffect(() => {
+    function handleOutsideClick(e) {
+      if (menuOpen && navRef.current && !navRef.current.contains(e.target)) {
+        setMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, [menuOpen]);
+
   return (
-    <nav className="navbar" aria-label="Main navigation">
+    <nav ref={navRef} className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`} aria-label="Main navigation">
       <div className="container">
         <div className="navbar__inner">
 

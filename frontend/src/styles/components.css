@@ -125,6 +125,16 @@
   border-radius: 2px;
 }
 
+/* Scrolled state — stronger shadow and slight background shift */
+.navbar--scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .navbar--scrolled {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  background-color: #162032;
+}
+
 /* Dark / light mode toggle button */
 .navbar__theme-toggle {
   display: flex;
@@ -197,8 +207,19 @@
     display: flex;
   }
 
+  /* Show active underline inside mobile menu */
+  .navbar__links a.active {
+    color: var(--color-accent);
+    padding-left: var(--space-3);
+    border-left: 3px solid var(--color-accent);
+  }
+
+  .navbar__links a.active::after {
+    display: none; /* hide the bottom underline on mobile, use left border instead */
+  }
+
   .navbar__cta {
-    display: none; /* CTA moves inside mobile menu */
+    display: none;
   }
 }
 
